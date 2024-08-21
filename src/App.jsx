@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import freelancering from '/freelancering.svg'
-import './index.css'
+import Auth from "./components/Auth/Auth";
+import "./index.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return <h1 className='text-3xl font-bold'>پروژه</h1>
+  return (
+    <Routes>
+      <Route path="/auth" element={<Auth />} />
+    </Routes>
+  );
 }
-
-export default App
+export default App;
