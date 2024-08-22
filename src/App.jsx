@@ -1,12 +1,14 @@
-import Auth from "./components/Auth/Auth";
+import Auth from "./pages/Auth";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/auth" element={<Auth />} />
-    </Routes>
+    <div className="container xl:max-w-screen-xl">
+      <Routes>
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
+    </div>
   );
 }
 export default App;
