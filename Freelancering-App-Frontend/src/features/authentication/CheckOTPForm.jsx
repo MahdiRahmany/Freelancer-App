@@ -1,12 +1,25 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import OTPInput from "react-otp-input";
+import { checkOtp } from "../../services/authService";
 
 function CheckOTPForm() {
   const [otp, setOtp] = useState("");
 
+  const { isPending, error, data, mutateAsync } = useMutation({
+    mutationFn: checkOtp,
+  });
+
+  const checkOtpHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await mutateAsync({ phoneNumber: "111", otp: "222" });
+    } catch (error) {}
+  };
+
   return (
     <div>
-      <form className="space-y-10">
+      <form className="space-y-10" onSubmit={checkOtpHandler}>
         <p className="font-bold text-secondary-800">کد تایید را وارد کنید :</p>
         <OTPInput
           value={otp}
