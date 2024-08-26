@@ -2,10 +2,12 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import OTPInput from "react-otp-input";
 import { checkOtp } from "../../services/authService";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-function CheckOTPForm() {
+function CheckOTPForm({ phoneNumber }) {
   const [otp, setOtp] = useState("");
-
+  const navigate = useNavigate();
   const { isPending, error, data, mutateAsync } = useMutation({
     mutationFn: checkOtp,
   });
@@ -13,8 +15,16 @@ function CheckOTPForm() {
   const checkOtpHandler = async (e) => {
     e.preventDefault();
     try {
-      const data = await mutateAsync({ phoneNumber: "111", otp: "222" });
-    } catch (error) {}
+      const { message, user } = await mutateAsync({ phoneNumber, otp });
+      toast.success(message);
+      if (user.isActive) {
+
+      } else {
+        navigate('./complete-profile')
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
   return (
