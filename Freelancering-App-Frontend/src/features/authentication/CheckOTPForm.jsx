@@ -5,14 +5,16 @@ import { checkOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
+import { CiEdit } from "react-icons/ci";
+import Loading from "../../ui/Loading";
 
 const RESEND_TIME = 90
 
-function CheckOTPForm({ phoneNumber, onBack, onReSendOtp }) {
+function CheckOTPForm({ phoneNumber, onBack, onReSendOtp , otpResponse}) {
   const [otp, setOtp] = useState("");
   const [time, setTime] = useState(RESEND_TIME);
   const navigate = useNavigate();
-  const { isPending, error, data, mutateAsync } = useMutation({
+  const { isPending, mutateAsync } = useMutation({
     mutationFn: checkOtp,
   });
 
@@ -48,6 +50,12 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp }) {
         ) : (
           <button onClick={onReSendOtp}>ارسال مجدد كد تايید</button>
         )}
+        {otpResponse && (<p className="flex items-center gap-x-2 my-4">
+         <span>{otpResponse?.message}</span>
+          <button onClick={onBack}>
+            <CiEdit/>
+          </button>
+        </p>)}
       </div>
       <form className="space-y-10" onSubmit={checkOtpHandler}>
         <p className="font-bold text-secondary-800">کد تایید را وارد کنید :</p>
@@ -65,7 +73,15 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp }) {
             borderRadius: "0.5rem",
           }}
         />
-        <button className="btn btn--primary w-full">تایید</button>
+                <div>
+          {isPending ? (
+            <Loading />
+          ) : (
+            <button type="submit" className="btn btn--primary w-full">
+              تایید
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

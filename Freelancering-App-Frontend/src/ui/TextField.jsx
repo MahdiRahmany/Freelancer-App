@@ -9,7 +9,6 @@ function TextField({ label, name, value, onChange }) {
         onChange={onChange}
         id={name}
         name={name}
-        placeholder="مثال: 091211111111"
         className="textField__input"
         type="text"
         autoComplete="off"
