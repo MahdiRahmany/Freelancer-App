@@ -1,14 +1,30 @@
 import { useState } from "react";
 import TextField from "../../ui/TextField";
 import RadioInput from "../../ui/RadioInput";
+import { useMutation } from "@tanstack/react-query";
+import { completeProfile } from "../../services/authService";
+import {toast} from "react-hot-toast";
+import Loading from "../../ui/Loading";
 
 function CompleteProfileForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-  const handleSubmit = (e) => {
-    e.reventDEfault();
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: completeProfile,
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { user, message } = await mutateAsync({ name, email, role });
+      console.log(user, message);
+
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
   return (
@@ -17,7 +33,7 @@ function CompleteProfileForm() {
         <form className="space-y-8" onSubmit={handleSubmit}>
           <TextField
             label="نام و نام خانوادگی"
-            name="email"
+            name="name"
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
@@ -29,7 +45,7 @@ function CompleteProfileForm() {
           />
           <div className="flex items-center justify-center gap-x-8">
             <RadioInput
-              label={كارفرما}
+              label="کارفرما"
               value="OWNER"
               onChange={(e) => setRole(e.target.value)}
               id="OWNER"
@@ -37,7 +53,7 @@ function CompleteProfileForm() {
               checked={role === "OWNER"}
             />
             <RadioInput
-              label={فريلنسر}
+              label="فریلنسر"
               value="FREELANCER"
               onChange={(e) => setRole(e.target.value)}
               id="FREELANCER"
@@ -45,7 +61,15 @@ function CompleteProfileForm() {
               checked={role === "FREELANCER"}
             />
           </div>
-          <button className="btn btn--primary w-full">تاييد</button>
+          <div>
+            {isPending ? (
+              <Loading />
+            ) : (
+              <button type="submit" className="btn btn--primary w-full">
+                تایید
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

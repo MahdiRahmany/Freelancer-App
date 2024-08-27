@@ -8,9 +8,9 @@ import { HiArrowRight } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
 import Loading from "../../ui/Loading";
 
-const RESEND_TIME = 90
+const RESEND_TIME = 90;
 
-function CheckOTPForm({ phoneNumber, onBack, onReSendOtp , otpResponse}) {
+function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
   const [otp, setOtp] = useState("");
   const [time, setTime] = useState(RESEND_TIME);
   const navigate = useNavigate();
@@ -50,12 +50,14 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp , otpResponse}) {
         ) : (
           <button onClick={onReSendOtp}>ارسال مجدد كد تايید</button>
         )}
-        {otpResponse && (<p className="flex items-center gap-x-2 my-4">
-         <span>{otpResponse?.message}</span>
-          <button onClick={onBack}>
-            <CiEdit/>
-          </button>
-        </p>)}
+        {otpResponse && (
+          <p className="flex items-center gap-x-2 my-4">
+            <span>{otpResponse?.message}</span>
+            <button onClick={onBack}>
+              <CiEdit />
+            </button>
+          </p>
+        )}
       </div>
       <form className="space-y-10" onSubmit={checkOtpHandler}>
         <p className="font-bold text-secondary-800">کد تایید را وارد کنید :</p>
@@ -73,7 +75,7 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp , otpResponse}) {
             borderRadius: "0.5rem",
           }}
         />
-                <div>
+        <div>
           {isPending ? (
             <Loading />
           ) : (
