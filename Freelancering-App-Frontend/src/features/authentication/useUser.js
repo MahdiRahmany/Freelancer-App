@@ -4,7 +4,7 @@ import { getUser } from "../../services/authService";
 export default function useUser() {
   return useQuery({
     queryKey: ["get-user"],
-    queryFn: getUser(),
+    queryFn: getUser,
     retry: false,
   });
 }
