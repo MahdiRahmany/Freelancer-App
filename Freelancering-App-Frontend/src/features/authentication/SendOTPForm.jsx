@@ -5,17 +5,14 @@ import { getOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 import Loading from "../../ui/Loading";
 
-function SendOTPForm({ onSubmit,isSendingOtp, phoneNumber, onChange }) {
-
-
+function SendOTPForm({ onSubmit, isSendingOtp, register }) {
   return (
     <div>
       <form onSubmit={onSubmit} className="space-y-8">
         <TextField
           label="شماره موبایل :"
           name="phoneNumber"
-          value={phoneNumber}
-          onChange={onChange}
+          register={register}
         />
         <div>
           {isSendingOtp ? (
