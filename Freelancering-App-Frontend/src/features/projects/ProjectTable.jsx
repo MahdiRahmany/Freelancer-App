@@ -9,7 +9,7 @@ function ProjectTable() {
 
   if (isLoading) return <Loading />;
 
-  if (projects.length) return <Empty resourceName="پروژه" />;
+  if (!projects || projects.length === 0) return <Empty resourceName="پروژه" />;
   return (
     <Table>
       <Table.Header>
