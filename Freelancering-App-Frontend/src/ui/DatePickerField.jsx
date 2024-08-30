@@ -1,6 +1,6 @@
 import DatePicker from "react-multi-date-picker";
-import persian from "react-multi-date-picker/calenders/persian";
-import persian_fa from "react-multi-date-picker/locals/persian_fa";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 
 function DatePickerField({ label, date, setDate }) {
   return (
