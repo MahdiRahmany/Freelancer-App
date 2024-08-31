@@ -1,6 +1,8 @@
+import DashboardLayout from "../features/freelancer/DashboardLayout"
+
 function FreelancerDashboard() {
   return (
-    <div>FreelancerDashboard</div>
+    <DashboardLayout/>
   )
 }
 export default FreelancerDashboard
