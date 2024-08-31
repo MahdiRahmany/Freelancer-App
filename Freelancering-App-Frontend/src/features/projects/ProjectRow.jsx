@@ -30,14 +30,6 @@ function ProjectRow({ project, index }) {
         ))}
       </td>
       <ToggleProjectStatus project={project} />
-      {/* <td>{project.freelancer?.name || "-"}</td>
-      <td>
-        {project.status === "OPEN" ? (
-          <span className="badge badge--success">باز</span>
-        ) : (
-          <span className="badge badge--danger">بسته</span>
-        )}
-      </td> */}
       <td>
         <div className="flex items-center gap-x-4">
           <button onClick={() => setIsEditOpen(true)}>
