@@ -19,11 +19,13 @@ export function editProjectApi({ id, newProject }) {
 }
 
 export function toggleProjectStatusApi({ id, newProject }) {
-  return http
-    .patch(`/project/${id}`, newProject)
-    .then((data) => data.data);
+  return http.patch(`/project/${id}`, newProject).then((data) => data.data);
 }
 
-export function getProjectApi({id}) {
+export function getProjectApi({ id }) {
   return http.get(`/project/${id}`).then((data) => data.data);
+}
+
+export function getProjectsApi() {
+  return http.get("/project/list").then((data) => data.data);
 }
