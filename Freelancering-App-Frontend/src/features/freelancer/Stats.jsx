@@ -4,6 +4,7 @@ import {
   HiCollection,
 } from "react-icons/hi";
 import { toPersianNumbersWithComma } from "../../utils/toPersianNumbers";
+import Stat from "../../ui/Stat";
 
 function Stats({ proposals }) {
   const numOfProposals = proposals.length;
