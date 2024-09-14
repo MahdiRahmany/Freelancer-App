@@ -1,5 +1,4 @@
 import { HiArrowRight } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 import useMoveBack from "../hooks/useMoveBack";
 
 function NotFound() {

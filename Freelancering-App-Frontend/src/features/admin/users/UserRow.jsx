@@ -37,7 +37,7 @@ function UserRow({ user, index }) {
         <Modal
           title="تغییر وضعیت کاربر"
           open={open}
-          onClick={() => setOpen(false)}
+          onClose={() => setOpen(false)}
         >
           <ChangeUserStatus userId={user._id} onClose={() => setOpen(false)} />
         </Modal>

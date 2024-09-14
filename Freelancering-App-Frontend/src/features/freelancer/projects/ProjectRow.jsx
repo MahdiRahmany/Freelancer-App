@@ -1,9 +1,8 @@
-import Table from "../../ui/Table";
-import toLocaleDateShort from "../../utils/toLocalDateShort";
-import { toPersianNumbersWithComma } from "../../utils/toPersianNumbers";
-import truncateText from "../../utils/truncateText";
+import Table from "../../../ui/Table";
+import { toPersianNumbersWithComma } from "../../../utils/toPersianNumbers";
+import truncateText from "../../../utils/truncateText";
+import toLocalDateShort from "../../../utils/toLocalDateShort";
 import { useState } from "react";
-import { useRemoveProject } from "./useRemoveProject";
 import { MdAssignmentAdd } from "react-icons/md";
 import Modal from "../../../ui/Modal";
 import CreateProposal from "../../proposals/CreateProposal";
@@ -28,7 +27,7 @@ function ProjectRow({ project, index }) {
       <td>{index + 1}</td>
       <td>{truncateText(title, 30)}</td>
       <td>{toPersianNumbersWithComma(budget)}</td>
-      <td>{toLocaleDateShort(deadline)}</td>
+      <td>{toLocalDateShort(deadline)}</td>
       <td>
         <span className={`badge ${projectStatus[status].className}`}>
           {projectStatus[status].label}
@@ -45,7 +44,7 @@ function ProjectRow({ project, index }) {
             onClose={() => setOpen(false)}
           />
         </Modal>
-        <button>
+        <button onClick={() => setOpen(true)}>
           <MdAssignmentAdd className="w-5 h-5 text-primary-900" />
         </button>
       </td>

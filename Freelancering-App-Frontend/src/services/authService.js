@@ -28,6 +28,6 @@ export function getUsersApi() {
 
 export function changeUsersStatusApi({ userId, data }) {
   return http
-    .patch(`/admin/user/verify/${userId}`)
+    .patch(`/admin/user/verify/${userId}`, data)
     .then(({ data }) => data.data);
 }

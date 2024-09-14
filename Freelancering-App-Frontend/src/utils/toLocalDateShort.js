@@ -1,3 +1,3 @@
 export default function toLocaleDateShort(date) {
-  return new Date(date).toLocaleDateString("fa-IR");
+  return new Date(date).toLocaleDateString("fa-IR",  {});
 }

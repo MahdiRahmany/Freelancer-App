@@ -3,6 +3,10 @@ import Table from "../../ui/Table";
 import truncateText from "../../utils/truncateText";
 import Modal from "../../ui/Modal";
 import ChangeProposalStatus from "./ChangeProposalStatus";
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "../../utils/toPersianNumbers";
 
 const statusStyle = [
   {
@@ -25,12 +29,12 @@ function ProposalRow({ proposal, index }) {
   return (
     <Table.Row>
       <td>{index + 1}</td>
-      <td>{proposal.user.name}</td>
+      <td>{user.name}</td>
       <td>
         <p>{truncateText(proposal.description, 50)}</p>
       </td>
-      <td>{proposal.duration}</td>
-      <td>{proposal.price}</td>
+      <td>{toPersianNumbers(proposal.duration)}</td>
+      <td>{toPersianNumbersWithComma(proposal.price)}</td>
       <td>
         <span className={`badge ${statusStyle[status].className}`}>
           {statusStyle[status].label}
@@ -40,11 +44,11 @@ function ProposalRow({ proposal, index }) {
         <Modal
           title="تغییر وضعیت درخواست"
           open={open}
-          onClick={() => setOpen(false)}
+          onClose={() => setOpen(false)}
         >
           <ChangeProposalStatus
             proposalId={proposal._id}
-            onClick={() => setOpen(false)}
+            onClose={() => setOpen(false)}
           />
         </Modal>
         <button onClick={() => setOpen(true)}>تغییر وضعیت</button>

@@ -1,10 +1,9 @@
 import TextField from "../../ui/TextField";
-import RadioInput from "../../ui/RadioInput";
 import { useMutation } from "@tanstack/react-query";
 import { completeProfile } from "../../services/authService";
 import { toast } from "react-hot-toast";
 import Loading from "../../ui/Loading";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import RadioInputGroup from "../../ui/RadioInputGroup";
 
@@ -27,8 +26,8 @@ function CompleteProfileForm() {
     try {
       const { user, message } = await mutateAsync({ data });
       toast.success(message);
-      if (user.status !== 2) {
-        Navigate("/");
+      if (!user.status !== 2) {
+        navigate("/");
         toast("پروفایل شما در انتظار تایید است", { icon: "👏" });
         return;
       }

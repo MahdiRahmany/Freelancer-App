@@ -3,7 +3,7 @@ import { getUsersApi } from "../../services/authService";
 
 export default function useUsers() {
   const { data, isLoading } = useQuery({
-    queryKey: ["projects"],
+    queryKey: ["users"],
     queryFn: getUsersApi,
   });
 

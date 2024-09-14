@@ -16,7 +16,7 @@ function AdminLayout() {
           <HiHome />
           <span>داشبورد</span>
         </CustomNavLink>
-        <CustomNavLink to="dashboard">
+        <CustomNavLink to="users">
           <HiUser />
           <span>کاربران</span>
         </CustomNavLink>

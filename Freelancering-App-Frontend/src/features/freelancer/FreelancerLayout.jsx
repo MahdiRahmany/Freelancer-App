@@ -9,7 +9,7 @@ function FreelancerLayout() {
       <Sidebar>
         <CustomNavLink to="dashboard">
           <HiHome />
-          <span>خانه</span>
+          <span>داشبورد</span>
         </CustomNavLink>
         <CustomNavLink to="projects">
           <HiCollection />

@@ -35,16 +35,20 @@ function ProjectTable() {
               <td>{toPersianNumber(project.budget)}</td>
               <td>{toLocaleDateShort(project.deadline)}</td>
               <td>
-                {project.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
+                <div className="flex flex-wrap items-center gap-2 max-w-[200px]">
+                  {project.tags.map((tag) => (
+                    <span className="badge badge--secondary" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </td>
               <td>{project.freelancer?.name || "-"}</td>
               <td>
                 {project.status === "OPEN" ? (
-                  <span>باز</span>
+                  <span className="badge badge--success">باز</span>
                 ) : (
-                  <span>بسته</span>
+                  <span className="badge badge--danger">بسته</span>
                 )}
               </td>
               <td>...</td>
